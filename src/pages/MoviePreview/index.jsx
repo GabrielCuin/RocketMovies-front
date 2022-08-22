@@ -9,10 +9,12 @@ import { Section } from "../../components/Section";
 
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/auth";
 
 export function MoviePreview() {
   const [data, setData] = useState(null);
 
+  const { user } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
   
@@ -36,8 +38,8 @@ export function MoviePreview() {
   return (
     <Container>
       <Header />
-
-      {data && (
+  
+      {data && 
         <Section title="">
           <header>
             <button type="button" onClick={handleBack}>
@@ -76,7 +78,7 @@ export function MoviePreview() {
 
           {data.description}
         </Section>
-      )}
+      }
     </Container>
   );
 }
